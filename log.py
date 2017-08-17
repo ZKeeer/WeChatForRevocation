@@ -5,6 +5,7 @@ import time
 
 class Log:
     LOG_PATH = "./Log/log.txt"
+    CHATLOG = "./Log/chat.txt"
 
     def __init__(self):
         if not os.path.exists("./Log/"):
@@ -24,3 +25,17 @@ class Log:
                 "\n\n\n"
             )
             fw.write(msg_error)
+    
+    def WriteChat(self, msg_time,msg_from,msg_group,msg_type,msg_content,msg_url):
+        if not msg_type == "Note":
+            with open(self.CHATLOG, "a") as fc:
+                msg_chat = "Message:{0}Time: {1}{0}Who: {2}{0}Group: {3}{0}Type: {4}{0}Content: {5}{0}Url: {6}{0}{0}".format(
+                    "\n",
+                    msg_time,
+                    msg_from,
+                    msg_group,
+                    msg_type,
+                    msg_content,
+                    msg_url
+                )
+                fc.write(msg_chat)

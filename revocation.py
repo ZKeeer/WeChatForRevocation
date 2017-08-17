@@ -7,6 +7,7 @@ import time
 
 import itchat
 
+from log import Log
 
 class Revocation:
     msg_store = {}
@@ -127,6 +128,9 @@ class Revocation:
             shutil.move(msg_content, r"./Cache/")
         elif msg['Type'] == 'Friends':
             msg_content = msg['Text']
+
+        logging = Log()
+        logging.WriteChat(str(msg_time),str(msg_from),str(msg_group),str(msg_type),str(msg_content),str(msg_url))
 
         self.msg_store.update(
             {msg_id: {"msg_from": msg_from, "msg_time": msg_time, "msg_type": msg_type,
