@@ -2,7 +2,7 @@
 import re
 from time import localtime, strftime
 import itchat
-from config import Config
+#from config import Config  #config.py已被移除
 
 
 class KeywordListener:
@@ -69,7 +69,7 @@ class KeywordListener:
         :param msg: 微信消息
         :return:
         """
-        config = Config()
+        #config = Config()
         mytime = localtime()
         msg_time = strftime("%Y/%m/%d %H:%M:%S", mytime)
 

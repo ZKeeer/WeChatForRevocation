@@ -7,6 +7,7 @@ import time
 
 import itchat
 
+from log import Log
 
 class Revocation:
     msg_store = {}
@@ -71,7 +72,7 @@ class Revocation:
 
         if itchat.search_chatrooms(userName=msg['FromUserName']):
             msg_group += r'[ '
-            msg_group += itchat.search_chatrooms(userName=msg['FromUserName'])['NickName']
+            msg_group += itchat.search_chatrooms(userName=msg['FromUserName'])['NickName']	# 已知BUG：自己在群组撤回消息时获取不到群组名
             msg_group += r' ]'
         return msg_from, msg_group
 
@@ -128,6 +129,9 @@ class Revocation:
         elif msg['Type'] == 'Friends':
             msg_content = msg['Text']
 
+        logging = Log()
+        logging.WriteChat(str(msg_time),str(msg_from),str(msg_group),str(msg_type),str(msg_content),str(msg_url))
+
         self.msg_store.update(
             {msg_id: {"msg_from": msg_from, "msg_time": msg_time, "msg_type": msg_type,
                       "msg_content": msg_content, "msg_url": msg_url, "msg_group": msg_group}})
@@ -156,6 +160,7 @@ class Revocation:
                 old_msg.get('msg_content', None)
             )
             shutil.move(r"./Cache/" + old_msg['msg_content'], r"./Revocation/")
+        print(str(msg_send))     
         return msg_send
 
     def Revocation(self, msg):
