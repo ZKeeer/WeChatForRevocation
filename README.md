@@ -8,9 +8,12 @@
 截图功能依赖: <br>
      python: pyscreenshot(only linux), PIL（python2.x）/Pillow（python3.x）<br>
      linux: scrot<br>
+     
+### 已知问题：
+自己在群聊中撤回消息时无法获取群聊名称
 <hr />
-### Linux环境配置
 
+### Linux环境配置
 ```pip install -r requirements.txt```
 ### Windows用户
 可以直接下载已打包的程序，<a href='https://github.com/ZKeeer/WeChatForRevocation/releases'>点击这里</a>。<br><br>
