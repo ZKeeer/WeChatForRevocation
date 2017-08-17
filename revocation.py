@@ -71,7 +71,7 @@ class Revocation:
 
         if itchat.search_chatrooms(userName=msg['FromUserName']):
             msg_group += r'[ '
-            msg_group += itchat.search_chatrooms(userName=msg['FromUserName'])['NickName']
+            msg_group += itchat.search_chatrooms(userName=msg['FromUserName'])['NickName']	# 已知BUG：自己在群组撤回消息时获取不到群组名
             msg_group += r' ]'
         return msg_from, msg_group
 
@@ -156,6 +156,7 @@ class Revocation:
                 old_msg.get('msg_content', None)
             )
             shutil.move(r"./Cache/" + old_msg['msg_content'], r"./Revocation/")
+        print(str(msg_send))     
         return msg_send
 
     def Revocation(self, msg):

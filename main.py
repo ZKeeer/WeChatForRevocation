@@ -88,10 +88,13 @@ if __name__ == '__main__':
     else:
         if sys.platform == 'linux':
             if "XDG_CURRENT_DESKTOP" in os.environ:
+                print('Linux GUI Mode')
                 itchat.auto_login(hotReload=True)
             else:
+                print('Linux CLI Mode')
                 itchat.auto_login(hotReload=True, enableCmdQR=2)
         else:
+            print('Windows GUI Mode')
             itchat.auto_login(hotReload=True)
 
     itchat.run()
