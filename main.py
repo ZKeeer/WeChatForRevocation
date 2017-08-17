@@ -6,7 +6,7 @@ import traceback
 
 import itchat
 
-from config import Config
+from watchword import Keyword
 from execution import Execution
 from keeponline import KeepOnline
 from keywordlistener import KeywordListener
@@ -17,7 +17,7 @@ exec_command = Execution()
 rmsg = Revocation()
 listener = KeywordListener()
 signfunc = SignInMPS()
-kol = KeepOnline()
+keeponline = KeepOnline()
 
 
 # 将接收到的消息存放在字典中，当接收到新消息时对字典中超时的消息进行清理
@@ -73,11 +73,11 @@ def Main(msg):
     except BaseException as e:
         traceback.print_exc(file=open('log.txt', 'a'))
     # 功能：保持在线
-    kol.ActiveWX()
+    keeponline.ActiveWX()
 
 
 if __name__ == '__main__':
-    config = Config()
+    keyword = Keyword()
 
     # 机器上有默认的图片打开程序，直接弹出二维码扫码登陆
     # 否则使用命令行输出二维码
